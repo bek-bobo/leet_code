@@ -1,22 +1,36 @@
 package validParentheses;
 
+import java.util.Stack;
+
 public class ValidParentheses {
     public static void main(String[] args) {
-        String s = "({[})]";
-        int open = 0,close = 0;
+        String s = "([)]";
+        Stack<Character> stack = new Stack<>();
 
         for (char c : s.toCharArray()) {
-            if (c == '(') open++;
-            if (c == '{') open++;
-            if (c == '[') open++;
-            if (c == ')') close++;
-            if (c == '}') close++;
-            if (c == ']') close++;
 
+
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            }
+
+            else {
+                // stack bo‘sh bo‘lsa — yopish mumkin emas
+                if (stack.isEmpty()) System.out.println("NO");
+
+                char top = stack.pop();
+
+                // mos kelishini tekshiramiz
+                if (c == ')' && top != '(') System.out.println("NO");
+                if (c == '}' && top != '{') System.out.println("NO");
+                if (c == ']' && top != '[') System.out.println("NO");
+            }
         }
 
-    if (open == close) System.out.println("YES " + open + " " + close);
-    else System.out.println("NO " + open + " " + close);
+        // oxirida hammasi yopilgan bo‘lishi kerak
+        System.out.println(stack.isEmpty());
+
+
 
     }
 }
