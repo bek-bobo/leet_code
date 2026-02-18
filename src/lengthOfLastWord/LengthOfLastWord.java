@@ -7,34 +7,22 @@ public class LengthOfLastWord {
         String s = "   fly me   to   the        ";
 
 
-//        if (s.length() == 0) {
-//            System.out.println("nothing");
-//        }
-        int counter = 0;
+        int length = 0;
+        int i = s.length() - 1;
 
-        for (int i = s.length() - 1; i >= 0; i--) {
-            if (s.charAt(i) == ' ') {
-                counter++;
-            } else {
-                break;
-
-            }
+        // oxiridagi bo‘sh joylarni tashlaymiz
+        while (i >= 0 && s.charAt(i) == ' ') {
+            i--;
         }
 
-        int secCounter = 0;
-        String sub = s.substring(0, s.length() - counter);
-
-        for (int i = sub.length() - 1; i >= 0; i--) {
-            if (s.charAt(i) != ' ') {
-                secCounter = i;
-            } else {
-                break;
-
-            }
+        // oxirgi so‘zni sanaymiz
+        while (i >= 0 && s.charAt(i) != ' ') {
+            length++;
+            i--;
         }
-        sub = s.substring(secCounter, s.length() - counter);
 
-        System.out.println(sub);
+        System.out.println(length);
+
     }
 
 }
